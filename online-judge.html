@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<title>Pawel Nadolski home</title>
+		<link rel="icon" type="image/png" href="/images/home.png" />
+		<link rel="stylesheet" href="static/style.css" type="text/css" />
+		
+		<link rel="stylesheet" href="static/pygments.css" type="text/css" />
+
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-2798846-4']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+	</head>
+	<body>
+	<div id="header">
+	<a href="/index.html"><img src="images/home.png" alt="home" /></a>
+	<h1>Pawel Nadolski home</h1>
+</div>
+
+	<div id="content">
+	
+<p>
+These are my solutions to some problems from <a href="http://uva.onlinejudge.org/">Online Judge</a>.
+</p>
+
+
+<h2>Problem 100</h2>
+<a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=36">problem description</a>
+<div class="highlight"><pre><span class="c">#include &lt;stdio.h&gt;</span>
+<span class="c">#include &lt;string.h&gt;</span>
+<span class="c">#define CACHE_SIZE 500000</span>
+<span class="c">#define TYP unsigned int</span>
+<span class="c">#define GETVAL(n) (n%2?3*n+1:n/2)</span>
+<span class="n">TYP</span> <span class="n">cyc_len</span><span class="p">[</span><span class="n">CACHE_SIZE</span><span class="p">];</span>
+
+<span class="n">TYP</span> <span class="n">getValue</span><span class="p">(</span><span class="n">TYP</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">CACHE_SIZE</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">cyc_len</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="n">cyc_len</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="n">cyc_len</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">getValue</span><span class="p">(</span><span class="n">GETVAL</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+		<span class="p">}</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">getValue</span><span class="p">(</span><span class="n">GETVAL</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">TYP</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">cyc_len</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+	<span class="k">while</span><span class="p">((</span><span class="n">x</span> <span class="o">=</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> </span><span class="si">%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">j</span><span class="p">))</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">TYP</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">maxnum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">j</span><span class="err">?</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">);</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">j</span><span class="o">&gt;</span><span class="n">i</span><span class="err">?</span><span class="n">j</span><span class="p">:</span><span class="n">i</span><span class="p">);</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">TYP</span> <span class="n">val</span> <span class="o">=</span> <span class="n">getValue</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="nb">max</span><span class="p">)</span> <span class="p">{</span> <span class="nb">max</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="n">maxnum</span> <span class="o">=</span> <span class="n">k</span><span class="p">;}</span>
+		<span class="p">}</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%d</span><span class="s"> </span><span class="si">%d</span><span class="s"> </span><span class="si">%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">max</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Problem 101</h2>
+<a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=37">problem description</a>
+<div class="highlight"><pre><span class="c">#include &lt;stdio.h&gt;</span>
+<span class="c">#define MAXBLOCKS 25</span>
+<span class="c">#define BADBLOCK -1</span>
+<span class="nb">int</span> <span class="n">blocks</span><span class="p">[</span><span class="n">MAXBLOCKS</span><span class="p">][</span><span class="n">MAXBLOCKS</span><span class="p">];</span>
+<span class="nb">int</span> <span class="n">pos_x</span><span class="p">[</span><span class="n">MAXBLOCKS</span><span class="p">];</span>
+<span class="nb">int</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">MAXBLOCKS</span><span class="p">];</span>
+<span class="nb">int</span> <span class="n">num_y</span><span class="p">[</span><span class="n">MAXBLOCKS</span><span class="p">];</span>
+
+<span class="n">void</span> <span class="n">moveOnto</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">pileOver</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">pos_over_b</span><span class="p">;</span>
+	<span class="nb">int</span> <span class="n">len_a</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+	<span class="n">pos_over_b</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">pos_y</span><span class="p">[</span><span class="n">a</span><span class="p">];</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">num_y</span><span class="p">[</span><span class="n">a</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">blocks</span><span class="p">[</span><span class="n">pos_x</span><span class="p">[</span><span class="n">b</span><span class="p">]][</span><span class="n">pos_over_b</span><span class="p">]</span> <span class="o">=</span> <span class="n">blocks</span><span class="p">[</span><span class="n">pos_x</span><span class="p">[</span><span class="n">a</span><span class="p">]][</span><span class="n">i</span><span class="p">];</span>
+		<span class="nb">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">blocks</span><span class="p">[</span><span class="n">pos_x</span><span class="p">[</span><span class="n">a</span><span class="p">]][</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">pos_x</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_x</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+		<span class="n">pos_y</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_over_b</span><span class="p">;</span>
+		<span class="n">blocks</span><span class="p">[</span><span class="n">pos_x</span><span class="p">[</span><span class="n">a</span><span class="p">]][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">BADBLOCK</span><span class="p">;</span>
+		<span class="n">pos_over_b</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">num_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-=</span> <span class="n">len_a</span><span class="p">;</span>
+	<span class="n">pos_x</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_x</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+	<span class="n">pos_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+	<span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">+=</span> <span class="n">len_a</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">moveUp</span><span class="p">(</span><span class="nb">int</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">len_a</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="nb">int</span> <span class="n">len_b</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">];</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nb">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">blocks</span><span class="p">[</span><span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">]][</span><span class="n">i</span><span class="p">];</span>
+		<span class="n">pos_y</span><span class="p">[</span><span class="n">e</span><span class="p">]</span><span class="o">+=</span><span class="n">len_a</span><span class="p">;</span>
+		<span class="n">blocks</span><span class="p">[</span><span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">]][</span><span class="n">i</span><span class="o">+</span><span class="n">len_a</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">moveDown</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span> <span class="n">len_a</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">pileOnto</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+	<span class="nb">int</span> <span class="n">len_a</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+	<span class="n">moveUp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">lan_a</span><span class="p">);</span>
+	<span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-=</span> <span class="n">len_b</span><span class="p">;</span>
+	<span class="n">pileOver</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+	<span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">+=</span> <span class="n">len_b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">moveOver</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nb">int</span> <span class="n">len_b</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="n">moveUp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="n">blocks</span><span class="p">[</span><span class="n">pos_x</span><span class="p">[</span><span class="n">b</span><span class="p">]][</span><span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+	<span class="n">pos_x</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_x</span><span class="p">[</span><span class="n">b</span><span class="p">];</span>
+	<span class="n">pos_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+	<span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+	<span class="n">moveDown</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="n">num_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+	<span class="nb">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">MAXBLOCKS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+		<span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">MAXBLOCKS</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">BADBLOCK</span><span class="p">;</span>
+
+	<span class="n">char</span> <span class="n">cmd1</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">cmd2</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+	<span class="nb">int</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">;</span>
+	<span class="n">r</span> <span class="o">=</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="n">pos_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+		<span class="n">pos_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">num_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">while</span><span class="p">((</span><span class="n">r</span> <span class="o">=</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%d</span><span class="s"> </span><span class="si">%s</span><span class="s"> </span><span class="si">%d</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cmd1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">param1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cmd2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">param2</span><span class="p">))</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd1</span><span class="p">,</span> <span class="s">&quot;quit&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">,</span><span class="si">%d</span><span class="s">,</span><span class="si">%s</span><span class="s">,</span><span class="si">%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">cmd1</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">cmd2</span><span class="p">,</span> <span class="n">param2</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">param1</span> <span class="o">==</span> <span class="n">param2</span><span class="p">)</span>
+			<span class="k">continue</span><span class="p">;</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd1</span><span class="p">,</span> <span class="s">&quot;move&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd2</span><span class="p">,</span> <span class="s">&quot;over&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">moveOver</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">);</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd2</span><span class="p">,</span> <span class="s">&quot;onto&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">moveOnto</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd1</span><span class="p">,</span> <span class="s">&quot;pile&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd2</span><span class="p">,</span> <span class="s">&quot;over&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">pileOver</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">);</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">cmd2</span><span class="p">,</span> <span class="s">&quot;onto&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+				<span class="n">pileOnto</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%d</span><span class="s">:&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+		<span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">BADBLOCK</span><span class="p">)</span>
+				<span class="n">printf</span><span class="p">(</span><span class="s">&quot; </span><span class="si">%d</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">blocks</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+
+
+	</div>
+		<div id="footer">
+		<span id="valid"><a href="http://validator.w3.org/check?uri=referer"><img class="w3c"
+		src="http://www.w3.org/Icons/valid-xhtml10-blue"
+		alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></span>
+		<span id="powered">Powered by <a href="http://www.djangoproject.com">Django</a>. Last updated April 7, 2011 at 20:05.</span>
+	</div>
+
+	</body>
+</html>
+
