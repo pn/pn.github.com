@@ -12,17 +12,17 @@
 		<link rel="stylesheet" href="static/pygments.css" type="text/css" />
 
 		<script type="text/javascript">
-		
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-2798846-4']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-2798846-4']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
 		</script>
 	</head>
 	<body>
@@ -79,6 +79,7 @@ These are my solutions to some problems from <a href="http://uva.onlinejudge.org
 <h2>Problem 101</h2>
 <a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=3&amp;page=show_problem&amp;problem=37">problem description</a>
 <div class="highlight"><pre><span class="c">#include &lt;stdio.h&gt;</span>
+<span class="c">#include &lt;string.h&gt;</span>
 <span class="c">#define MAXBLOCKS 25</span>
 <span class="c">#define BADBLOCK -1</span>
 <span class="nb">int</span> <span class="n">blocks</span><span class="p">[</span><span class="n">MAXBLOCKS</span><span class="p">][</span><span class="n">MAXBLOCKS</span><span class="p">];</span>
@@ -121,7 +122,8 @@ These are my solutions to some problems from <a href="http://uva.onlinejudge.org
 <span class="n">void</span> <span class="n">pileOnto</span><span class="p">(</span><span class="nb">int</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
 	<span class="nb">int</span> <span class="n">len_a</span> <span class="o">=</span> <span class="n">num_y</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos_y</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
-	<span class="n">moveUp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">lan_a</span><span class="p">);</span>
+	<span class="nb">int</span> <span class="n">len_b</span><span class="p">;</span>
+	<span class="n">moveUp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">len_a</span><span class="p">);</span>
 	<span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">-=</span> <span class="n">len_b</span><span class="p">;</span>
 	<span class="n">pileOver</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
 	<span class="n">num_y</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">+=</span> <span class="n">len_b</span><span class="p">;</span>
@@ -192,7 +194,7 @@ These are my solutions to some problems from <a href="http://uva.onlinejudge.org
 		<span id="valid"><a href="http://validator.w3.org/check?uri=referer"><img class="w3c"
 		src="http://www.w3.org/Icons/valid-xhtml10-blue"
 		alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></span>
-		<span id="powered">Powered by <a href="http://www.djangoproject.com">Django</a>. Last updated April 7, 2011 at 20:05.</span>
+		<span id="powered">Powered by <a href="http://www.djangoproject.com">Django</a>. Last updated Nov. 2, 2011 at 22:51.</span>
 	</div>
 
 	</body>

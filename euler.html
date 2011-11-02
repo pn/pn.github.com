@@ -12,17 +12,17 @@
 		<link rel="stylesheet" href="static/pygments.css" type="text/css" />
 
 		<script type="text/javascript">
-		
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-2798846-4']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-2798846-4']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
 		</script>
 	</head>
 	<body>
@@ -681,24 +681,6 @@ These are my solutions to some problems from <a href="http://projecteuler.net/">
 </pre></div>
 
 
-<h2>Problem 23</h2>
-<a href="http://projecteuler.net/index.php?section=problems&amp;id=23">problem description</a>
-<div class="highlight"><pre><span class="c">#!/usr/bin/env python3</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">28123</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">abundant</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
-	<span class="n">q</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-	<span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">%</span><span class="n">y</span><span class="p">)</span>
-	<span class="k">if</span> <span class="n">q</span><span class="o">*</span><span class="n">q</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span> <span class="n">s</span> <span class="o">-=</span> <span class="n">q</span>
-	<span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span> <span class="n">abundant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-	<span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([((</span><span class="n">x</span><span class="o">-</span><span class="n">a</span><span class="p">)</span> <span class="ow">in</span> <span class="n">abundant</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">abundant</span><span class="p">]):</span> <span class="n">result</span> <span class="o">+=</span> <span class="n">x</span>
-<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-
-
 <h2>Problem 24</h2>
 <a href="http://projecteuler.net/index.php?section=problems&amp;id=24">problem description</a>
 <div class="highlight"><pre><span class="c">#!/usr/bin/env python3</span>
@@ -854,7 +836,7 @@ These are my solutions to some problems from <a href="http://projecteuler.net/">
 		<span id="valid"><a href="http://validator.w3.org/check?uri=referer"><img class="w3c"
 		src="http://www.w3.org/Icons/valid-xhtml10-blue"
 		alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></span>
-		<span id="powered">Powered by <a href="http://www.djangoproject.com">Django</a>. Last updated April 7, 2011 at 20:05.</span>
+		<span id="powered">Powered by <a href="http://www.djangoproject.com">Django</a>. Last updated Nov. 2, 2011 at 22:51.</span>
 	</div>
 
 	</body>
