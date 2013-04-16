@@ -1,7 +1,7 @@
 body
 {
   /* background from http://subtlepatterns.com */
-  background-image: url(../images/bright_squares.png);
+  background-image: url(../images/bg_pattern.png);
   background-repeat: repeat;
 }
 #header img {
