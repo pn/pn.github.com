@@ -1,7 +1,9 @@
-/*body {
-    background-color: black;
-    color: white;
-}*/
+body
+{
+  /* background from http://subtlepatterns.com */
+  background-image: url(../images/bright_squares.png);
+  background-repeat: repeat;
+}
 #header img {
 	float: left;
 	margin-right: 10px;
